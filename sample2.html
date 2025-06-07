@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GunToys - Action Awaits!</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a1a2e;
+      --secondary: #16213e;
+      --accent: #e94560;
+      --light: #f4f4f4;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--light);
+      color: var(--primary);
+    }
+
+    .navbar {
+      background-color: var(--secondary);
+    }
+
+    .navbar-brand, .nav-link {
+      color: white !important;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1610391562453-63eeaf6cf46e?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+    }
+
+    .btn-accent:hover {
+      background-color: #cc324a;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .feature-box, .product-card {
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      height: 100%;
+      transition: transform 0.3s;
+    }
+
+    .feature-box:hover, .product-card:hover {
+      transform: translateY(-10px);
+    }
+
+    footer {
+      background-color: var(--secondary);
+      color: white;
+      padding: 30px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">GunToys</a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon bg-light"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto gap-3">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Unleash the Fun with GunToys!</h1>
+      <p class="lead">Premium toy guns for action-packed adventures.</p>
+      <a href="#products" class="btn btn-accent btn-lg mt-3">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-5">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose GunToys</h2>
+        <p>Built for safety, style, and excitement!</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-box text-center">
+            <h5>Durable Material</h5>
+            <p>Designed to withstand rough play with tough plastic quality.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box text-center">
+            <h5>Safe for Kids</h5>
+            <p>Rounded edges, soft darts, and certified for kids aged 5+.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box text-center">
+            <h5>Cool Designs</h5>
+            <p>From futuristic blasters to realistic pistols, we have them all.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-5 bg-light">
+    <div class="container">
+      <div class="section-title">
+        <h2>Top Picks</h2>
+        <p>Check out our bestsellers</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="product-card text-center">
+            <img src="https://m.media-amazon.com/images/I/61R5dZjqTxL.jpg" class="img-fluid mb-3" alt="Blaster 3000">
+            <h5>Blaster 3000</h5>
+            <p class="text-muted">12-dart rapid fire with auto-reload feature.</p>
+            <button class="btn btn-accent btn-sm mt-2">Add to Cart - ₹799</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="product-card text-center">
+            <img src="https://m.media-amazon.com/images/I/81X8da3oQzL.jpg" class="img-fluid mb-3" alt="Ninja Strike">
+            <h5>Ninja Strike</h5>
+            <p class="text-muted">Stealthy, powerful, and perfect for ambushes.</p>
+            <button class="btn btn-accent btn-sm mt-2">Add to Cart - ₹999</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="product-card text-center">
+            <img src="https://m.media-amazon.com/images/I/71AjPl3nTxL.jpg" class="img-fluid mb-3" alt="Thunder Shot">
+            <h5>Thunder Shot</h5>
+            <p class="text-muted">Large revolver with 6 soft dart ammo drums.</p>
+            <button class="btn btn-accent btn-sm mt-2">Add to Cart - ₹649</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Footer -->
+  <footer id="contact">
+    <div class="container text-center">
+      <h5>Contact Us</h5>
+      <p>Email: support@guntoys.com | Phone: +91-9876543210</p>
+      <p class="small mb-0">© 2025 GunToys. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
