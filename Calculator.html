@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CODSOFT-2</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- CSS link -->
+        <style>
+            body {
+                background-color: #f8f9fa;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .calculator {
+                width: 320px;
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                padding: 20px;
+            }
+
+            .display {
+                background-color: #f8f9fa;
+                border: 1px solid #dee2e6;
+                border-radius: 5px;
+                text-align: right;
+                padding: 15px;
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+                min-height: 60px;
+            }
+
+            .btn-calc {
+                font-size: 1.2rem;
+                padding: 10px 0;
+            }
+
+            .btn-operator {
+                background-color: #ffc107;
+            }
+
+            .btn-equals {
+                background-color: #28a745;
+                color: white;
+            }
+
+            .btn-clear {
+                background-color: #dc3545;
+                color: white;
+            }
+
+        </style>
+    </head>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+
+        <div class="row g-2 mb-2">
+            <div class="col-3">
+                <button class="btn btn-secondary btn-calc w-100" onclick="clearDisplay()">C</button>
+            </div>
+            <div class="col-9">
+                <button class="btn btn-primary btn-calc w-100" onclick="calculate()" id="equals">=</button>
+            </div>
+        </div>
+
+        <div class="row g-2 mb-2">
+            <div class="col-3">
+                <button class="btn btn-light btn-calc w-100" onclick="appendNumber('7')">7</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-light btn-calc w-100" onclick="appendNumber('8')">8</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-light btn-calc w-100" onclick="appendNumber('9')">9</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-operator btn-calc w-100" onclick="setOperator('+')">+</button>
+            </div>
+        </div>
+
+        <div class="row g-2 mb-2">
+            <div class="col-3">
+                <button class="btn btn-light btn-calc w-100" onclick="appendNumber('4')">4</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-light btn-calc w-100" onclick="appendNumber('5')">5</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-light btn-calc w-100" onclick="appendNumber('6')">6</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-operator btn-calc w-100" onclick="setOperator('-')">-</button>
+            </div>
+        </div>
+
+        <div class="row g-2 mb-2">
+            <div class="col-3">
+                <button class="btn btn-light btn-calc w-100" onclick="appendNumber('1')">1</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-light btn-calc w-100" onclick="appendNumber('2')">2</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-light btn-calc w-100" onclick="appendNumber('3')">3</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-operator btn-calc w-100" onclick="setOperator('*')">×</button>
+            </div>
+        </div>
+
+        <div class="row g-2">
+            <div class="col-3">
+                <button class="btn btn-light btn-calc w-100" onclick="appendNumber('0')">0</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-light btn-calc w-100" onclick="appendDecimal()">.</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-operator btn-calc w-100" onclick="setOperator('/')">÷</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js">
+        const display = document.getElementById('display');
+        let firstNumber = '';
+        let operator = '';
+        let secondNumber = '';
+        let waitingForSecondNumber = false;
+
+        function updateDisplay() {
+            if (waitingForSecondNumber) {
+                display.textContent = secondNumber || '0';
+            } else {
+                display.textContent = firstNumber || '0';
+            }
+        }
+
+        function appendNumber(number) {
+            if (waitingForSecondNumber) {
+                secondNumber += number;
+            } else {
+                // Prevent multiple leading zeros
+                if (firstNumber === '0') {
+                    firstNumber = number;
+                } else {
+                    firstNumber += number;
+                }
+            }
+            updateDisplay();
+        }
+
+        function appendDecimal() {
+            if (waitingForSecondNumber) {
+                if (!secondNumber.includes('.')) {
+                    secondNumber += secondNumber === '' ? '0.' : '.';
+                }
+            } else {
+                if (!firstNumber.includes('.')) {
+                    firstNumber += firstNumber === '' ? '0.' : '.';
+                }
+            }
+            updateDisplay();
+        }
+
+        function setOperator(op) {
+            // If we already have both numbers and an operator, calculate first
+            if (firstNumber && operator && secondNumber) {
+                calculate();
+            }
+            operator = op;
+            waitingForSecondNumber = true;
+            secondNumber = '';
+        }
+
+        function calculate() {
+            if (!firstNumber || !operator || !secondNumber) return;
+
+            const num1 = parseFloat(firstNumber);
+            const num2 = parseFloat(secondNumber);
+            let result;
+
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                default:
+                    return;
+            }
+
+            // Reset for next calculation
+            firstNumber = result.toString();
+            operator = '';
+            secondNumber = '';
+            waitingForSecondNumber = false;
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            firstNumber = '';
+            operator = '';
+            secondNumber = '';
+            waitingForSecondNumber = false;
+            updateDisplay();
+        }
+
+        // Initialize display
+        updateDisplay();
+    </script>
+    </body>
+
+</html>
